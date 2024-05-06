@@ -1,0 +1,20 @@
+[gd_resource type="VisualShader" load_steps=3 format=3 uid="uid://cxxt80xe30lq8"]
+
+[sub_resource type="VisualShaderNodeTransformFunc" id="VisualShaderNodeTransformFunc_gkt4g"]
+
+[sub_resource type="VisualShaderNodeColorFunc" id="VisualShaderNodeColorFunc_6vm7w"]
+function = 1
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+
+
+"
+graph_offset = Vector2(-254.21, 125.276)
+nodes/fragment/0/position = Vector2(380, 80)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTransformFunc_gkt4g")
+nodes/fragment/2/position = Vector2(80, 300)
+nodes/fragment/3/node = SubResource("VisualShaderNodeColorFunc_6vm7w")
+nodes/fragment/3/position = Vector2(0, 400)

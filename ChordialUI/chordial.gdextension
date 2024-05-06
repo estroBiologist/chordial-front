@@ -1,0 +1,14 @@
+[configuration]
+entry_symbol = "gdext_rust_init"
+compatibility_minimum = 4.1
+reloadable = true
+
+[libraries]
+linux.debug.x86_64 = "res://../chordial-gd/target/debug/libchordial_gd.so"
+linux.release.x86_64 = "res://../chordial-gd/target/release/libchordial_gd.so"
+windows.debug.x86_64 = "res://../chordial-gd/target/debug/chordial_gd.dll"
+windows.release.x86_64 = "res://../chordial-gd/target/release/chordial_gd.dll"
+macos.debug = "res://../chordial-gd/target/debug/libchordial_gd.dylib"
+macos.release = "res://../chordial-gd/target/release/libchordial_gd.dylib"
+macos.debug.arm64 = "res://../chordial-gd/target/debug/libchordial_gd.dylib"
+macos.release.arm64 = "res://../chordial-gd/target/release/libchordial_gd.dylib"

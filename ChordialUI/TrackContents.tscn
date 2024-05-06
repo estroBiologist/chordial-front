@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6govmvb4uiyn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ctpe"]
+bg_color = Color(0.0354509, 0.0354509, 0.0354509, 1)
+
+[node name="TrackContents" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 80)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 80.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_4ctpe")

@@ -1,0 +1,15 @@
+[package]
+name = "chordial-gd"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+godot = { git = "https://github.com/godot-rust/gdext", branch = "master" }
+chordial = { git = "https://github.com/estroBiologist/chordial.git", branch = "main" }
+cpal = "0.15.2"
+
+[profile.dev.package.chordial]
+opt-level = 3

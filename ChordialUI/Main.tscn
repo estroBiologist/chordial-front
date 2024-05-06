@@ -1,0 +1,515 @@
+[gd_scene load_steps=24 format=3 uid="uid://hgfwmjo3lno4"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_33m5x"]
+[ext_resource type="Script" path="res://Tree.gd" id="1_an1q5"]
+[ext_resource type="Texture2D" uid="uid://kbja1y5vm2ir" path="res://icons/Play.svg" id="1_ohb7a"]
+[ext_resource type="Texture2D" uid="uid://b5eglv1fml36s" path="res://icons/Pause.svg" id="2_pd1qt"]
+[ext_resource type="Texture2D" uid="uid://ber0f2onrm0es" path="res://icons/Stop.svg" id="3_jx5b1"]
+[ext_resource type="Script" path="res://TextureBtn.gd" id="4_1dsmq"]
+[ext_resource type="Script" path="res://NodeView.gd" id="6_aj7lx"]
+[ext_resource type="PackedScene" uid="uid://cwit31j0yjx5g" path="res://TrackHeader.tscn" id="7_k6vk0"]
+[ext_resource type="StyleBox" uid="uid://b1suafns1khrj" path="res://ChannelNameStylebox.tres" id="8_fu73d"]
+[ext_resource type="PackedScene" uid="uid://b6govmvb4uiyn" path="res://TrackContents.tscn" id="8_v1oxs"]
+[ext_resource type="Texture2D" uid="uid://bgf5c8qufhd31" path="res://icons/Add.svg" id="9_lrn7w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c02gp"]
+bg_color = Color(0.0470588, 0.0470588, 0.0470588, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_akuc0"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.37, 0.37, 0.37, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3noa2"]
+content_margin_left = 18.0
+content_margin_top = 12.0
+content_margin_right = 18.0
+content_margin_bottom = 12.0
+bg_color = Color(1, 0.309804, 0.372549, 0.6)
+border_color = Color(0.325, 0.325, 0.325, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmiot"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.102548, 0.102548, 0.102548, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="Theme" id="Theme_xduov"]
+GraphEdit/styles/bg = SubResource("StyleBoxFlat_c02gp")
+GraphNode/styles/titlebar = SubResource("StyleBoxFlat_akuc0")
+GraphNode/styles/titlebar_selected = SubResource("StyleBoxFlat_3noa2")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_gmiot")
+VBoxContainer/constants/separation = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0i6td"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tip2b"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
+border_width_bottom = 2
+border_color = Color(0.0352941, 0.0352941, 0.0352941, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c871i"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
+border_width_bottom = 2
+border_color = Color(0.0352941, 0.0352941, 0.0352941, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Gradient" id="Gradient_7i6mg"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3kvyv"]
+gradient = SubResource("Gradient_7i6mg")
+width = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fv23m"]
+bg_color = Color(0.0470588, 0.0470588, 0.0470588, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bsbha"]
+bg_color = Color(0.0456853, 0.0456853, 0.0456852, 1)
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_xduov")
+script = ExtResource("1_33m5x")
+
+[node name="ChordialEngine" type="ChordialEngine" parent="."]
+unique_name_in_owner = true
+
+[node name="VSplit" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="TopBarPanel" type="PanelContainer" parent="VSplit"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0i6td")
+
+[node name="TopBar" type="HBoxContainer" parent="VSplit/TopBarPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MenuBar" type="MenuBar" parent="VSplit/TopBarPanel/TopBar"]
+layout_mode = 2
+
+[node name="File" type="PopupMenu" parent="VSplit/TopBarPanel/TopBar/MenuBar"]
+unique_name_in_owner = true
+item_count = 5
+item_0/text = "New"
+item_0/id = 0
+item_1/text = "Open"
+item_1/id = 1
+item_2/text = ""
+item_2/id = 2
+item_2/separator = true
+item_3/text = "Save"
+item_3/id = 3
+item_4/text = "Save As..."
+item_4/id = 4
+
+[node name="Edit" type="PopupMenu" parent="VSplit/TopBarPanel/TopBar/MenuBar"]
+
+[node name="Node" type="PopupMenu" parent="VSplit/TopBarPanel/TopBar/MenuBar"]
+
+[node name="Window" type="PopupMenu" parent="VSplit/TopBarPanel/TopBar/MenuBar"]
+
+[node name="Help" type="PopupMenu" parent="VSplit/TopBarPanel/TopBar/MenuBar"]
+
+[node name="Spacer" type="Control" parent="VSplit/TopBarPanel/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BPM" type="SpinBox" parent="VSplit/TopBarPanel/TopBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+min_value = 10.0
+max_value = 999.0
+step = 0.01
+value = 120.0
+alignment = 1
+suffix = "BPM"
+custom_arrow_step = 0.1
+
+[node name="SigNum" type="OptionButton" parent="VSplit/TopBarPanel/TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_tip2b")
+item_count = 16
+selected = 3
+popup/item_0/text = "1"
+popup/item_0/id = 0
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+popup/item_3/text = "4"
+popup/item_3/id = 3
+popup/item_4/text = "5"
+popup/item_4/id = 4
+popup/item_5/text = "6"
+popup/item_5/id = 5
+popup/item_6/text = "7"
+popup/item_6/id = 6
+popup/item_7/text = "8"
+popup/item_7/id = 7
+popup/item_8/text = "9"
+popup/item_8/id = 8
+popup/item_9/text = "10"
+popup/item_9/id = 9
+popup/item_10/text = "11"
+popup/item_10/id = 10
+popup/item_11/text = "12"
+popup/item_11/id = 11
+popup/item_12/text = "13"
+popup/item_12/id = 12
+popup/item_13/text = "14"
+popup/item_13/id = 13
+popup/item_14/text = "15"
+popup/item_14/id = 14
+popup/item_15/text = "16"
+popup/item_15/id = 15
+
+[node name="Label" type="Label" parent="VSplit/TopBarPanel/TopBar"]
+modulate = Color(0.384932, 0.384932, 0.384932, 1)
+layout_mode = 2
+text = "/"
+
+[node name="SigDenom" type="OptionButton" parent="VSplit/TopBarPanel/TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_c871i")
+item_count = 4
+selected = 1
+popup/item_0/text = "2"
+popup/item_0/id = 0
+popup/item_1/text = "4"
+popup/item_1/id = 1
+popup/item_2/text = "8"
+popup/item_2/id = 2
+popup/item_3/text = "16"
+popup/item_3/id = 3
+
+[node name="PlayBtn" type="TextureButton" parent="VSplit/TopBarPanel/TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("1_ohb7a")
+stretch_mode = 5
+script = ExtResource("4_1dsmq")
+normal_texture = ExtResource("1_ohb7a")
+pressed_texture = ExtResource("2_pd1qt")
+
+[node name="StopBtn" type="TextureButton" parent="VSplit/TopBarPanel/TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("3_jx5b1")
+stretch_mode = 3
+script = ExtResource("4_1dsmq")
+
+[node name="PosA" type="SpinBox" parent="VSplit/TopBarPanel/TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_icons/updown = SubResource("GradientTexture1D_3kvyv")
+max_value = 1000.0
+step = 0.01
+allow_greater = true
+alignment = 1
+suffix = "m"
+custom_arrow_step = 0.1
+
+[node name="PosB" type="SpinBox" parent="VSplit/TopBarPanel/TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_icons/updown = SubResource("GradientTexture1D_3kvyv")
+max_value = 1000.0
+step = 0.01
+allow_greater = true
+alignment = 1
+suffix = "s"
+custom_arrow_step = 0.1
+
+[node name="Position" type="LineEdit" parent="VSplit/TopBarPanel/TopBar"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+placeholder_text = "pos"
+alignment = 1
+
+[node name="PosUnit" type="OptionButton" parent="VSplit/TopBarPanel/TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_c871i")
+item_count = 3
+selected = 0
+popup/item_0/text = "min:sec"
+popup/item_0/id = 2
+popup/item_1/text = "beat:step"
+popup/item_1/id = 1
+popup/item_2/text = "samples"
+popup/item_2/id = 0
+
+[node name="Waveform" type="Panel" parent="VSplit/TopBarPanel/TopBar"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fv23m")
+
+[node name="HSplit" type="HSplitContainer" parent="VSplit"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBox1" type="VBoxContainer" parent="VSplit/HSplit"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VSplit/HSplit/VBox1"]
+layout_mode = 2
+text = " Browser"
+
+[node name="Tree" type="Tree" parent="VSplit/HSplit/VBox1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scroll_horizontal_enabled = false
+script = ExtResource("1_an1q5")
+
+[node name="VBox2" type="VBoxContainer" parent="VSplit/HSplit"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="Views" type="TabContainer" parent="VSplit/HSplit/VBox2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+tab_alignment = 1
+current_tab = 1
+
+[node name="Timeline" type="ScrollContainer" parent="VSplit/HSplit/VBox2/Views"]
+visible = false
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="HSplit" type="HSplitContainer" parent="VSplit/HSplit/VBox2/Views/Timeline"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+split_offset = 140
+
+[node name="Left" type="VBoxContainer" parent="VSplit/HSplit/VBox2/Views/Timeline/HSplit"]
+layout_mode = 2
+
+[node name="TrackHeader" parent="VSplit/HSplit/VBox2/Views/Timeline/HSplit/Left" instance=ExtResource("7_k6vk0")]
+layout_mode = 2
+
+[node name="TrackHeader2" parent="VSplit/HSplit/VBox2/Views/Timeline/HSplit/Left" instance=ExtResource("7_k6vk0")]
+layout_mode = 2
+track_index = 1
+
+[node name="TrackHeader3" parent="VSplit/HSplit/VBox2/Views/Timeline/HSplit/Left" instance=ExtResource("7_k6vk0")]
+layout_mode = 2
+track_index = 2
+
+[node name="TrackHeader4" parent="VSplit/HSplit/VBox2/Views/Timeline/HSplit/Left" instance=ExtResource("7_k6vk0")]
+layout_mode = 2
+track_index = 3
+
+[node name="TrackHeader5" type="PanelContainer" parent="VSplit/HSplit/VBox2/Views/Timeline/HSplit/Left"]
+self_modulate = Color(0.706857, 0.706857, 0.706857, 1)
+custom_minimum_size = Vector2(100, 80)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("8_fu73d")
+
+[node name="TextureButton" type="TextureButton" parent="VSplit/HSplit/VBox2/Views/Timeline/HSplit/Left/TrackHeader5"]
+self_modulate = Color(0.461851, 0.461851, 0.461851, 1)
+layout_mode = 2
+texture_normal = ExtResource("9_lrn7w")
+stretch_mode = 3
+
+[node name="Right" type="ScrollContainer" parent="VSplit/HSplit/VBox2/Views/Timeline/HSplit"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_bsbha")
+vertical_scroll_mode = 0
+
+[node name="TimelineContents" type="VBoxContainer" parent="VSplit/HSplit/VBox2/Views/Timeline/HSplit/Right"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TrackContents" parent="VSplit/HSplit/VBox2/Views/Timeline/HSplit/Right/TimelineContents" instance=ExtResource("8_v1oxs")]
+layout_mode = 2
+
+[node name="TrackContents2" parent="VSplit/HSplit/VBox2/Views/Timeline/HSplit/Right/TimelineContents" instance=ExtResource("8_v1oxs")]
+layout_mode = 2
+
+[node name="TrackContents3" parent="VSplit/HSplit/VBox2/Views/Timeline/HSplit/Right/TimelineContents" instance=ExtResource("8_v1oxs")]
+layout_mode = 2
+
+[node name="TrackContents4" parent="VSplit/HSplit/VBox2/Views/Timeline/HSplit/Right/TimelineContents" instance=ExtResource("8_v1oxs")]
+layout_mode = 2
+
+[node name="Node View" type="GraphEdit" parent="VSplit/HSplit/VBox2/Views"]
+layout_mode = 2
+size_flags_horizontal = 3
+scroll_offset = Vector2(-80, -31)
+right_disconnects = true
+connection_lines_thickness = 3.0
+zoom_min = 0.25
+zoom_max = 4.0
+zoom_step = 1.072
+show_zoom_label = true
+script = ExtResource("6_aj7lx")
+
+[node name="GraphNode" type="GraphNode" parent="VSplit/HSplit/VBox2/Views/Node View"]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 50.0
+offset_right = 612.0
+offset_bottom = 422.0
+mouse_filter = 1
+position_offset = Vector2(192, 19)
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VSplit/HSplit/VBox2/Views/Node View/GraphNode"]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="VSplit/HSplit/VBox2/Views/Node View/GraphNode/HBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VSplit/HSplit/VBox2/Views/Node View/GraphNode/HBoxContainer"]
+layout_mode = 2
+text = "input"
+
+[node name="ColorRect" type="ColorRect" parent="VSplit/HSplit/VBox2/Views/Node View/GraphNode"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Debug" type="VBoxContainer" parent="VSplit/HSplit/VBox2/Views"]
+visible = false
+layout_mode = 2
+
+[node name="DebugRefresh" type="Button" parent="VSplit/HSplit/VBox2/Views/Debug"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Refresh"
+
+[node name="DebugText" type="RichTextLabel" parent="VSplit/HSplit/VBox2/Views/Debug"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VSplit/HSplit/VBox2"]
+modulate = Color(0.462745, 0.462745, 0.462745, 1)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VSplit/HSplit/VBox2/HBoxContainer"]
+layout_mode = 2
+text = " chordialUI - proof of concept"
+horizontal_alignment = 2
+justification_flags = 162
+
+[node name="Spacer" type="Control" parent="VSplit/HSplit/VBox2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DbgText" type="Label" parent="VSplit/HSplit/VBox2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "debug text here "
+justification_flags = 162
+
+[connection signal="index_pressed" from="VSplit/TopBarPanel/TopBar/MenuBar/File" to="." method="_on_file_index_pressed"]
+[connection signal="value_changed" from="VSplit/TopBarPanel/TopBar/BPM" to="." method="_on_bpm_value_changed"]
+[connection signal="button_down" from="VSplit/TopBarPanel/TopBar/PlayBtn" to="VSplit/TopBarPanel/TopBar/PlayBtn" method="_on_button_down"]
+[connection signal="button_up" from="VSplit/TopBarPanel/TopBar/PlayBtn" to="VSplit/TopBarPanel/TopBar/PlayBtn" method="_on_button_up"]
+[connection signal="toggled" from="VSplit/TopBarPanel/TopBar/PlayBtn" to="." method="_on_play_btn_toggled"]
+[connection signal="button_down" from="VSplit/TopBarPanel/TopBar/StopBtn" to="VSplit/TopBarPanel/TopBar/StopBtn" method="_on_button_down"]
+[connection signal="button_up" from="VSplit/TopBarPanel/TopBar/StopBtn" to="VSplit/TopBarPanel/TopBar/StopBtn" method="_on_button_up"]
+[connection signal="pressed" from="VSplit/TopBarPanel/TopBar/StopBtn" to="." method="_on_stop_btn_pressed"]
+[connection signal="value_changed" from="VSplit/TopBarPanel/TopBar/PosA" to="." method="_on_bpm_value_changed"]
+[connection signal="value_changed" from="VSplit/TopBarPanel/TopBar/PosB" to="." method="_on_bpm_value_changed"]
+[connection signal="text_changed" from="VSplit/TopBarPanel/TopBar/Position" to="." method="_on_position_text_changed"]
+[connection signal="item_selected" from="VSplit/TopBarPanel/TopBar/PosUnit" to="." method="_on_pos_unit_item_selected"]
+[connection signal="connection_request" from="VSplit/HSplit/VBox2/Views/Node View" to="." method="_on_node_view_connection_request"]
+[connection signal="delete_nodes_request" from="VSplit/HSplit/VBox2/Views/Node View" to="." method="_on_delete_nodes_request"]
+[connection signal="disconnection_request" from="VSplit/HSplit/VBox2/Views/Node View" to="." method="_on_node_view_disconnection_request"]
+[connection signal="node_creation_requested" from="VSplit/HSplit/VBox2/Views/Node View" to="." method="_on_node_creation_requested"]
+[connection signal="node_deletion_requested" from="VSplit/HSplit/VBox2/Views/Node View" to="." method="_on_node_deletion_requested"]
+[connection signal="pressed" from="VSplit/HSplit/VBox2/Views/Debug/DebugRefresh" to="." method="_on_debug_refresh_pressed"]

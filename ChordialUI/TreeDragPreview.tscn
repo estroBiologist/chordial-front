@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://cceetwn3lgm8k"]
+
+[sub_resource type="GDScript" id="GDScript_wc7gh"]
+script/source = "extends Control
+
+var offset := Vector2.ZERO
+
+func add_content(control: Control):
+	%Content.add_child(control)
+
+func reset_position():
+	%Content.global_position = global_position
+"
+
+[sub_resource type="GDScript" id="GDScript_c2wnl"]
+script/source = "extends Control
+
+@export var follow: Control
+
+func _process(delta: float):
+	var prev := global_position
+	
+	global_position = global_position.lerp(
+		follow.global_position + follow.offset,
+		1.0 - pow(2.0, -delta / 0.06)
+	)
+	
+	var diff := global_position - prev
+	
+	rotation_degrees = (diff.x + diff.y) * 0.5
+"
+
+[node name="TreeDragPreview" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = SubResource("GDScript_wc7gh")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Content" type="Control" parent="Node" node_paths=PackedStringArray("follow")]
+unique_name_in_owner = true
+z_index = 10
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_c2wnl")
+follow = NodePath("../..")

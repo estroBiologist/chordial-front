@@ -1,0 +1,125 @@
+0 chordial.sink
+in 32.0
+
+1 chordial.sine
+param f:880
+
+2 chordial.amplify
+in 1.0 4.0
+in 5.0
+
+3 chordial.trigger
+
+4 chordial.sine
+param f:554.37
+
+5 chordial.envelope
+in 6.0
+in 7.0
+in 8.0
+in 9.0
+in 3.0
+
+6 chordial.control_value
+param f:0
+
+7 chordial.control_value
+param f:0
+
+8 chordial.control_value
+param f:1
+
+9 chordial.control_value
+param f:1
+
+10 chordial.gain
+in 2.0
+param f:0.0
+
+11 chordial.gain
+in 10.0
+param f:0.0
+
+12 chordial.gain
+in 11.0
+param f:0.0
+
+13 chordial.gain
+in 12.0
+param f:0.0
+
+14 chordial.gain
+in 13.0
+param f:0.0
+
+15 chordial.gain
+in 14.0
+param f:0.0
+
+16 chordial.gain
+in 15.0
+param f:0.0
+
+17 chordial.gain
+in 16.0
+param f:0.0
+
+18 chordial.gain
+in 17.0
+param f:0.0
+
+19 chordial.gain
+in 18.0
+param f:0.0
+
+20 chordial.gain
+in 19.0
+param f:0.0
+
+21 chordial.gain
+in 20.0
+param f:0.0
+
+22 chordial.gain
+in 21.0
+param f:0.0
+
+23 chordial.gain
+in 22.0
+param f:0.0
+
+24 chordial.gain
+in 23.0
+param f:0.0
+
+25 chordial.gain
+in 24.0
+param f:0.0
+
+26 chordial.gain
+in 25.0
+param f:0.0
+
+27 chordial.gain
+in 26.0
+param f:0.0
+
+28 chordial.gain
+in 27.0
+param f:0.0
+
+29 chordial.gain
+in 28.0
+param f:0.0
+
+30 chordial.gain
+in 29.0
+param f:0.0
+
+31 chordial.gain
+in 30.0
+param f:0.0
+
+32 chordial.gain
+in 31.0
+param f:0.0

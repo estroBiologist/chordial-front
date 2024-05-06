@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwit31j0yjx5g"]
+
+[ext_resource type="StyleBox" uid="uid://b1suafns1khrj" path="res://ChannelNameStylebox.tres" id="1_5c7qo"]
+[ext_resource type="Script" path="res://TrackHeader.gd" id="2_vv0v0"]
+
+[node name="TrackHeader" type="PanelContainer"]
+custom_minimum_size = Vector2(100, 80)
+theme_override_styles/panel = ExtResource("1_5c7qo")
+script = ExtResource("2_vv0v0")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Track 1"
+horizontal_alignment = 1
